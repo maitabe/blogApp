@@ -10,7 +10,6 @@
 			.when('/', {
 				redirectTo: '/posts'
 			})
-<<<<<<< HEAD
 			.when('/posts/:page?', {
 				templateUrl: 'app/posts/posts.view.html',
 				controller: 'PostsCtrl'
@@ -20,18 +19,10 @@
 				templateUrl: 'app/posts/post.view.html',
 				controller: 'PostCtrl'
 			})
-=======
-			//if i dont want a page to be required, i use  '/posts:page?' so it became optional according to the page
-			.when('/posts:page?', {
-				templateUrl: 'app/posts/posts.view.html',
-				controller: 'PostsCtrl'
-			})
->>>>>>> origin/gh-pages
 			.when('/admin', {
 				templateUrl: 'app/admin/admin.html',
 				controller: 'AdminCtrl'
 			})
-<<<<<<< HEAD
 			.when('admin/edit/post/:title', {
 				templateUrl: 'app/admin/edit.html',
 				controller: 'EditCtrl',
@@ -43,14 +34,11 @@
 				templateUrl: 'app/admin/edit.html',
 				controller: 'NewCtrl'
 			})
-=======
->>>>>>> origin/gh-pages
 			.otherwise({
 				redirectTo: '/'
 			});
 	});
 
-<<<<<<< HEAD
 app.directive('preventDefault', function() {
     return {
         restrict: 'E',
@@ -63,11 +51,5 @@ app.directive('preventDefault', function() {
         }
    };
 });
-=======
-	app.filter(function() {
-
-	});
-
->>>>>>> origin/gh-pages
 
 }());
