@@ -88,7 +88,7 @@
 			});
 
 		$scope.filterAll = function (){
-			SearchService.labelText = "allPosts";
+			SearchService.labelText = 'allPosts';
 			SearchService.typeOfSearch = 'filterAll';
 		};
 
