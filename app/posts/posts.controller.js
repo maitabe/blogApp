@@ -3,6 +3,39 @@
 	'use strict';
 	var app = angular.module('blogApp');
 
+	app.controller('PostsCtrl', function($scope, postsService) {
+
+		// Get posts data
+	 	postsService.success(function(data, status) {
+		$scope.posts = data.posts;
+		//console.log($scope.posts);
+
+		})
+		.error(function (data, status){
+			console.error(status, data);
+		});
+
+
+		// initialize model
+		$scope.posts = [];
+		$scope.postsQuantity = '';
+		$scope.currentPage = 1;
+		$scope.posts.length =
+// 		$scope.labelTxt = '';
+
+
+		$scope.oldestPost = function () {
+			$scope.currentPage++;
+		};
+
+		$scope.newestPost = function () {
+			$scope.currentPage--;
+		};
+
+
+
+	});
+
 	// //single filter field
 	// app.filter('makeUppercase', function(){
 	// 		return function (item) {
@@ -10,7 +43,7 @@
 	// 		};
 	// });
 
-	// //multi filter
+	// multi filter
 	// app.filter('startWithA', function () {
 	// 		return function (items) {
 
@@ -30,112 +63,85 @@
 	// 		};
 	// });
 
-	//multi filter
-	app.filter('pagination', function () {
-			return function (items, cp) {
 
 
-				// create a new array
-				var filteredArr = [];
+// // make filters file.js
+	// app.filter('searchBar', ['SearchService',function (SearchService){
+	// 		return function (items, labelText) {
+	// 			// your code
+	// 			var filteredArr = [];
 
-				var offset = (cp - 1) * 3;
+	// 		if(SearchService.labelText !== undefined && SearchService.labelText !== '') {
+	// 			for (var i = 0; i < items.length; i++) {
 
-				filteredArr.push(items[offset]);
-				filteredArr.push(items[offset + 1]);
-				filteredArr.push(items[offset + 2]);
+	// 				if(SearchService.typeOfSearch === 'filterByLabel') {
+	// 					if(items[i].author === SearchService.labelText) {
+	// 						filteredArr.push(items[i]);
+	// 					}
+	// 				}
+	// 				else if(SearchService.typeOfSearch === 'filterByCategory') {
+	// 					for (var j = 0; j < items[j].tags.length; j++) {
+	// 						if(items[i].tags[j] === SearchService.labelText) {
+	// 							filteredArr.push(items[i]);
+	// 						}
+	// 					}
 
-				// Use Array.slice(start, end)
-
-				return filteredArr;
-			};
-	});
-
-// make filters file.js
-	app.filter('searchBar', ['SearchService',function (SearchService){
-			return function (items, labelText) {
-				// your code
-				var filteredArr = [];
-
-			if(SearchService.labelText !== undefined && SearchService.labelText !== '') {
-				for (var i = 0; i < items.length; i++) {
-
-					if(SearchService.typeOfSearch === 'filterByLabel') {
-						if(items[i].author === SearchService.labelText) {
-							filteredArr.push(items[i]);
-						}
-					}
-					else if(SearchService.typeOfSearch === 'filterByCategory') {
-						for (var j = 0; j < items[j].tags.length; j++) {
-							if(items[i].tags[j] === SearchService.labelText) {
-								filteredArr.push(items[i]);
-							}
-						}
-
-					}
-					else if(SearchService.typeOfSearch === 'filterByDate') {
-						// if(items[i].category === SearchService.labelText){
-						// 	filteredArr.push(items.tags[i]);
-						// }
-					}
-					else if(SearchService.typeOfSearch === 'filterAll'){
-						filteredArr.push(items[i]);
-					}
+	// 				}
+	// 				else if(SearchService.typeOfSearch === 'filterByDate') {
+	// 					// if(items[i].category === SearchService.labelText){
+	// 					// 	filteredArr.push(items.tags[i]);
+	// 					// }
+	// 				}
+	// 				else if(SearchService.typeOfSearch === 'filterAll'){
+	// 					filteredArr.push(items[i]);
+	// 				}
 
 
-				}
-			}
-			else {
-					filteredArr = items;
-			}
-				return filteredArr;
+	// 			}
+	// 		}
+	// 		else {
+	// 				filteredArr = items;
+	// 		}
+	// 			return filteredArr;
 
-			};
+	// 		};
 
-	}]);
+	// }]);
 
 
 
 
 
-//postsData,
-	app.controller('PostsCtrl', function ($scope,  $routeParams, $location, $http, SearchService, PostsService){
+// //postsData,
+// 	app.controller('PostsCtrl', function ($scope,  $routeParams, $location, $http, SearchService, PostsService){
 
-		// initialize model
-		$scope.posts = [];
-		$scope.postsQuantity = '';
-		$scope.currentPage = 1;
-		$scope.labelTxt = '';
+// 		// initialize model
+// 		$scope.posts = [];
+// 		$scope.postsQuantity = '';
+// 		$scope.currentPage = 1;
+// 		$scope.labelTxt = '';
 
-		$scope.posts = PostsService.posts;
-
-
-
-		// postsData
-		// 	.success(function(data, status) {
-		// 		$scope.postsData = data.posts;
-
-		// 		// &scope.test = data.posts[1].source;
-		// 	})
-		// 	.error(function (data, status){
-		// 		console.error(status, data);
-		// 	});
-
-		$scope.isActive = function (viewLocation) {
-			var active = (viewLocation === $location.path());
-			return active;
-		};
-
-		$scope.oldestPost = function () {
-			$scope.currentPage--;
-		};
-
-		$scope.newestPost = function () {
-			$scope.currentPage++;
-		};
+// 		$scope.posts = PostsService.posts;
 
 
 
-	});
+// 		// postsData
+// 		// 	.success(function(data, status) {
+// 		// 		$scope.postsData = data.posts;
+
+// 		// 		// &scope.test = data.posts[1].source;
+// 		// 	})
+// 		// 	.error(function (data, status){
+// 		// 		console.error(status, data);
+// 		// 	});
+
+// 		// $scope.isActive = function (viewLocation) {
+// 		// 	var active = (viewLocation === $location.path());
+// 		// 	return active;
+// 		// };
+
+
+// 	});
 
 
 

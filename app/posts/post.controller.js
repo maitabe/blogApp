@@ -4,23 +4,23 @@
 	var app = angular.module('blogApp');
 
 //postsData,
-	app.controller('PostCtrl', function ($scope, $routeParams, $location, $http, $sanitize, SearchService, PostsService, postData){
+	app.controller('PostCtrl', function ($scope, $routeParams, $location, $http){
 
-
+// $sanitize, SearchService,PostsService , postData
 
 		// initialize model
-		$scope.posts = [];
+//		$scope.posts = [];
 		$scope.postsQuantity = '';
 		$scope.currentPage = 1;
 		$scope.labelTxt = '';
 
-		$scope.posts = PostsService.posts;
+		// $scope.posts = PostsService.posts;
 
 
-		$http.get(postData.htmlPath)
-    		.success(function (data) {
-        	$scope.postHtml = $sanitize(data);
-    	});
+		// $http.get(postData.htmlPath)
+  //   		.success(function (data) {
+  //       	$scope.postHtml = $sanitize(data);
+    	// });
 
 
 		// postsData
@@ -33,10 +33,10 @@
 		// 		console.error(status, data);
 		// 	});
 
-		$scope.isActive = function (viewLocation) {
-			var active = (viewLocation === $location.path());
-			return active;
-		};
+		// $scope.isActive = function (viewLocation) {
+		// 	var active = (viewLocation === $location.path());
+		// 	return active;
+		// };
 
 		$scope.oldestPost = function () {
 			$scope.currentPage--;

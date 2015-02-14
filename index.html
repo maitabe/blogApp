@@ -24,7 +24,7 @@
 
 <body ng-app="blogApp">
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavCtrl" >
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -60,7 +60,8 @@
 			<!-- Blog Entries Column was cuted to posts.view.html instead i add below the ng-view tag-->
 			<ng-view> </ng-view>
 			<!-- Blog Sidebar Widgets Column -->
-			<aside class="col-md-4" ng-controller="sideBarCtrl">
+			<aside class="col-md-4" >
+			<!-- ng-controller="sideBarCtrl" -->
 			{{search}}
 				<!-- Blog Search Well -->
 				<div class="well" >
@@ -82,7 +83,7 @@
 					<h3>Filter Posts</h3>
 
 					<div class="list-group">
-						<a href="#" class="list-group-item active" ng-click="filterAll()">
+						<a href="#/posts" class="list-group-item active" ng-class="" ng-click="filterAll()">
 							<span class="badge">{{postsQuantity}}</span>
 							Show All Posts
 						</a>
@@ -164,10 +165,17 @@
 	<script src="app/posts/post.controller.js"></script>
 	<script src="app/posts/postsService.js"></script>
 
+	<!-- Navigation -->
+	<script src="app/nav/nav.controller.js"></script>
+
+	<!-- Filter -->
+	<script src="app/filter.controller.js"></script>
+
 	<!-- SideBar -->
 	<script src="app/posts/sideBarController.js"></script>
 
 	<!-- Admin Tab -->
+	<!-- <script src="app/posts/sideBarController.js"></script> -->
 
 </body>
 </html>
