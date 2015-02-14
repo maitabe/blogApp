@@ -23,6 +23,49 @@
 			};
 	});
 
+// make filters file.js
+	app.filter('searchBar', ['postsService',function (postsService){
+		return function (items) {
+			// your code
+			var filteredArr = [];
 
+
+			if(postsService.labelText !== undefined && postsService.labelText !== '') {
+				for (var i = 0; i < items.length; i++) {
+
+					if(postsService.typeOfSearch === 'filterByLabel') {
+						if(items[i].author === postsService.labelText) {
+							filteredArr.push(items[i]);
+						}
+					}
+					else if(postsService.typeOfSearch === 'filterByCategory') {
+						for (var j = 0; j < items[j].tags.length; j++) {
+							if(items[i].tags[j] === postsService.labelText) {
+								filteredArr.push(items[i]);
+							}
+						}
+
+					}
+					else if(postsService.typeOfSearch === 'filterByDate') {
+						// if(items[i].category === postsService.labelText){
+						// 	filteredArr.push(items.tags[i]);
+						// }
+					}
+					else if(postsService.typeOfSearch === 'filterAll'){
+						filteredArr.push(items[i]);
+					}
+
+
+				}
+			}
+			else {
+				filteredArr = items;
+			}
+			postsService.quantity = filteredArr.length;
+			return filteredArr;
+
+		};
+
+	}]);
 
 }());

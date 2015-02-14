@@ -3,10 +3,9 @@
 
 	var app = angular.module('blogApp');
 
-	app.controller('sideBarCtrl', ['$rootScope', '$scope', '$http', 'PostsService','SearchService',
-		function ($rootScope, $scope, $http, PostsService, SearchService) {
+	app.controller('sideBarCtrl', ['$rootScope', '$scope', '$http', 'postsService',
+		function ($rootScope, $scope, $http, postsService) {
 			//promissies tip#6
-
 
 
 		// initialize model
@@ -20,18 +19,22 @@
 		    console.log(curr.params);
 
 		    if (curr.params.category) {
-		    	SearchService.labelText = curr.params.category;
-		    	SearchService.typeOfSearch = 'filterByCategory';
+		    	postsService.labelText = curr.params.category;
+		    	postsService.typeOfSearch = 'filterByCategory';
 		    }
 		});
 
 		//ajax http call
-		$http.get('data/posts.json')
-			.success(function (data, status) {
-				PostsService.posts = data.posts;
-				$scope.postsQuantity = PostsService.posts.length;
+			$scope.posts = postsService.get().then(function (data){
+				$scope.posts = data.data.posts;
+				$scope.postsQuantity = $scope.posts.length;
 
-					PostsService.posts.forEach(function (item){
+				//refactor the code with the following
+				//$scope.categories = utils.getTags($scope.posts);
+				//$scope.authors = utils.getAuthors($scope.posts);
+				//$scope.dates = utils.getDates($scope.posts);
+
+					$scope.posts.forEach(function (item){
 
 					//building authors array
 					// check if author exist in categories
@@ -83,25 +86,29 @@
 
 				});
 			})
-			.error(function (err, status) {
-				console.error(status, err);
-			});
+			// this code was replaced with best practice
+			//	postsService
+			//	.success(function (data, status) {
+			//			$scope.posts = data.posts;
+			//.error(function (err, status) {
+			//	console.error(status, err);
+			//});
 
 		$scope.filterAll = function (){
-			SearchService.labelText = 'allPosts';
-			SearchService.typeOfSearch = 'filterAll';
+			postsService.labelText = 'allPosts';
+			postsService.typeOfSearch = 'filterAll';
 		};
 
 		$scope.filterByLabel = function (items) {
-			SearchService.labelText = items;
-			SearchService.typeOfSearch = 'filterByLabel';
+			postsService.labelText = items;
+			postsService.typeOfSearch = 'filterByLabel';
 			// this is new !! what is it? and how its helping us?
 			// $scope.$apply();
 		};
 
 		$scope.filterByCategory = function (tag) {
-			SearchService.labelText = tag;
-			SearchService.typeOfSearch = 'filterByCategory';
+			postsService.labelText = tag;
+			postsService.typeOfSearch = 'filterByCategory';
 			// $scope.$apply();
 
 		};

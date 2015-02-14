@@ -4,29 +4,24 @@
 	var app = angular.module('blogApp');
 	//get data from json
 	app.factory('postsService', function ($http){
-		return $http.get('data/posts.json');
+
+		var promise = $http.get('data/posts.json')
+			.error(function (data, status) {
+				console.error(status, data);
+			});
+
+		return {
+			get: function () {
+				return promise;
+			},
+			labelText: '',
+			typeOfSearch: '',
+			quantity: 0
+		};
+
+		//return $http.get('data/posts.json');
 
 	});
-
-// 	app.service('PostsService', function(){
-//     this.posts = [];
-// });
-
-// 	app.service('SearchService', function(){
-//     this.labelText = '';
-//     this.typeOfSearch = '';
-// });
-
-// todo: need to replace it to a service
-	// app.factory('SearchService', function(){
-
- //    var fac = {};
-
- //     fac.labelText = '';
-
- //    return fac;
-
-	// });
 
 
 
