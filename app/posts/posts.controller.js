@@ -20,7 +20,7 @@
 		$scope.posts = [];
 		$scope.postsQuantity = '';
 		$scope.currentPage = 1;
-		$scope.posts.length =
+		//$scope.posts.length =
 // 		$scope.labelTxt = '';
 
 
