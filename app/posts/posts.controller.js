@@ -3,7 +3,7 @@
 	'use strict';
 	var app = angular.module('blogApp');
 
-	app.controller('PostsCtrl', function($scope, postsService, $routeParams) {
+	app.controller('PostsCtrl', function($scope, postsService, $routeParams, $location) {
 
 		// initialize model
 		$scope.posts = [];
@@ -20,6 +20,7 @@
 			$scope.posts = data.data.posts;
 
 		});
+
 
 
 		$scope.oldestPost = function () {
