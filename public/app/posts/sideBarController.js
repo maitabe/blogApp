@@ -26,6 +26,7 @@
 
 		//ajax http call
 			$scope.posts = postsService.get().then(function (data){
+				console.log(data);
 				$scope.posts = data.data.posts;
 				$scope.postsQuantity = $scope.posts.length;
 

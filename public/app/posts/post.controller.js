@@ -14,6 +14,7 @@
 		$scope.currentPage = 1;
 		$scope.labelTxt = '';
 
+console.log($routeParams);
 		// $scope.posts = PostsService.posts;
 
 

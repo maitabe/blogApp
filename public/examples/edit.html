@@ -9,10 +9,11 @@
 	<title>Real-Time Blog App</title>
 
 	<!-- Bootstrap Core CSS -->
-	<link rel="stylesheet" href="lib/css/bootstrap.min.css">
-	<link rel="stylesheet" href="lib/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../lib/css/bootstrap-theme.min.css">
+
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="../css/main.css">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,10 +63,18 @@
 
 		<div class="row">
 
-			<!-- Admin - Posts List -->
+			<!-- Admin - Edit Post -->
 			<section class="col-sm-12">
 
 				<h2 class="page-header">Edit Post</h2>
+
+				<!-- Invalid Input Alert -->
+				<!-- <div class="alert alert-danger" role="alert">
+					The entered <strong>Title</strong> already exists in another post.
+				</div> -->
+				<!-- <div class="alert alert-danger" role="alert">
+					One or more required fields have no value.
+				</div> -->
 
 				<form>
 					<!-- Top Settings -->
@@ -257,11 +266,11 @@ grunt.registerTask(&#39;hi&#39;, [&#39;test&#39;, &#39;test:World&#39;]);
 	<!-- /.container -->
 
 	<!-- Libraries -->
-	<script src="lib/js/jquery.min.js"></script>
-	<script src="lib/js/bootstrap.min.js"></script>
+	<script src="../lib/js/jquery.min.js"></script>
+	<script src="../lib/js/bootstrap.min.js"></script>
 
 	<!-- App -->
-	<script src="app/app.js"></script>
+	<script src="../app/app.js"></script>
 
 </body>
 </html>

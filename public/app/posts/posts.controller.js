@@ -13,7 +13,8 @@
 
 		$scope.labelTxt = '';
 
-
+		// $scope.pageNum = $routeParams.page;
+		// console.log($scope.pageNum);
 
 		// Get posts data
 		$scope.posts = postsService.get().then(function (data){
@@ -31,6 +32,15 @@
 			$scope.currentPage--;
 		};
 
+		var title = 'Grunt - Intro';
+        var postObj = {
+            description: '*** TESTING ***'
+        };
+
+		postsService.save(title, postObj)
+            .then(function (post) {
+                console.log(post);
+            });
 
 
 	});
