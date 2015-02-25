@@ -45,7 +45,7 @@
 				//$scope.authors = utils.getAuthors($scope.posts);
 				//$scope.dates = utils.getDates($scope.posts);
 
-					$scope.posts.forEach(function (item){
+				$scope.posts.forEach(function (item){
 
 					//building authors array
 					// check if author exist in categories
@@ -94,8 +94,8 @@
 							$scope.categories.push({text:tag, num:1});
 						}
 					});
-
 				});
+				console.log("categories=%o", $scope.categories);
 			})
 			// this code was replaced with best practice
 			//	postsService

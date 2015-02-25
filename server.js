@@ -67,7 +67,7 @@ app.post('/posts', function (req, res) {
 
 			//if post is found
 			if(post.title === title) {
-				exist = true;
+				existing = true;
 
 				//merge the contents
 				for (var key in newData) {
@@ -78,7 +78,7 @@ app.post('/posts', function (req, res) {
 		};
 
 		//new post
-		if (!exists) {
+		if (!existing) {
 			//validate data
 			posts.push(newData);
 		}

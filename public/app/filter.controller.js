@@ -5,22 +5,21 @@
 
 		//multi filter
 	app.filter('pagination', function () {
-			return function (items, cp) {
+		return function (items, cp) {
 
+			// create a new array
+			var filteredArr = [];
 
-				// create a new array
-				var filteredArr = [];
+			var offset = (cp - 1) * 3;
 
-				var offset = (cp - 1) * 3;
+			filteredArr.push(items[offset]);
+			filteredArr.push(items[offset + 1]);
+			filteredArr.push(items[offset + 2]);
 
-				filteredArr.push(items[offset]);
-				filteredArr.push(items[offset + 1]);
-				filteredArr.push(items[offset + 2]);
-
-				// Use Array.slice(start, end)
-
-				return filteredArr;
-			};
+			// Use Array.slice(start, end)
+			console.log("pagination=%o", filteredArr);
+			return filteredArr;
+		};
 	});
 
 // make filters file.js
@@ -62,6 +61,7 @@
 				filteredArr = items;
 			}
 			postsService.quantity = filteredArr.length;
+			console.log("searchBar filter posts=%o", filteredArr);
 			return filteredArr;
 
 		};
