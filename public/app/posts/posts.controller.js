@@ -9,7 +9,6 @@
 		$scope.posts = [];
 		$scope.postsQuantity = '';
 		$scope.currentPage = 1;
-		$scope.quantityPlaceHolder = postsService.quantity;
 
 		$scope.labelTxt = '';
 

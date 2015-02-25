@@ -5,22 +5,21 @@
 	//get data from json
 	app.factory('postsService', function ($http, $q){
 
-		var promise = $http.get('/blogApp/data/postsOriginal.json') //('/posts')
+		var promise = $http.get('/posts') //('/posts')
 			.error(function (data, status) {
 				console.error(status, data);
 			});
 
 		return {
 			save: function (title, postObj) {
-		    var defer = $q.defer();
+			    var defer = $q.defer();
 
 			    $http.post('/posts', {
 			        title: title,
 			        data: postObj
-			    })
-			        .success(function (data, status) {
-			            defer.resolve(data);
-			        });
+			    }).success(function (data, status) {
+		            defer.resolve(data);
+		        });
 
 			    return defer.promise;
 			},
@@ -28,8 +27,7 @@
 				return promise;
 			},
 			labelText: '',
-			typeOfSearch: '',
-			quantity: 0
+			typeOfSearch: ''
 		};
 
 		//return $http.get('data/posts.json');
