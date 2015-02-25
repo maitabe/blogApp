@@ -39,7 +39,7 @@
 
         <h4><small class="glyphicon glyphicon-user" ></small> Author</h4>
         <div class="list-group">
-            <a href="#/posts?author={{author.text}}" class="list-group-item" ng-repeat="author in authors " ng-click="filterByLabel(author.text)">
+            <a href="#/posts?author={{author.text}}" class="list-group-item" ng-repeat="author in authors " ng-click="filterByAuthor(author.text)">
                 <span class="badge">{{author.num}}</span>
                 {{author.text}}
             </a>

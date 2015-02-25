@@ -33,14 +33,14 @@
 			if(postsService.labelText !== undefined && postsService.labelText !== '') {
 				for (var i = 0; i < items.length; i++) {
 
-					if(postsService.typeOfSearch === 'filterByLabel') {
-						if(items[i].author === postsService.labelText) {
+					if(postsService.typeOfSearch === 'filterByAuthor') {
+						if(items[i].author.toLowerCase() === postsService.labelText.replace('-', ' ')) {
 							filteredArr.push(items[i]);
 						}
 					}
 					else if(postsService.typeOfSearch === 'filterByCategory') {
 						for (var j = 0; j < items[j].tags.length; j++) {
-							if(items[i].tags[j] === postsService.labelText) {
+							if(items[i].tags[j].toLowerCase() === postsService.labelText) {
 								filteredArr.push(items[i]);
 							}
 						}

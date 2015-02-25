@@ -5,7 +5,7 @@
 	//get data from json
 	app.factory('postsService', function ($http, $q){
 
-		var promise = $http.get('/posts')
+		var promise = $http.get('/blogApp/data/postsOriginal.json') //('/posts')
 			.error(function (data, status) {
 				console.error(status, data);
 			});

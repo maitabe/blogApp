@@ -63,6 +63,7 @@
 			<aside class="col-md-4" ng-controller="sideBarCtrl" >
 
 			{{search}}
+				{{cleanUrl}}
 				<!-- Blog Search Well -->
 				<div class="well" >
 					<h4>Search  labelTxt : {{labelTxt}}</h4>
@@ -91,7 +92,7 @@
 
 					<h4><small class="glyphicon glyphicon-tag" ></small> Category</h4>
 					<div class="list-group" >
-						<a href="#/posts?category={{category.text}}"  class="list-group-item" ng-repeat="category in categories " ng-click="filterByCategory(category.text)">
+						<a href="#/posts?category={{cleanUrl(category.text)}} "  class="list-group-item" ng-repeat="category in categories " ng-click="filterByCategory(category.text)">
 							<span class="badge">{{category.num}}</span>
 							{{category.text}}
 						</a>
@@ -99,8 +100,8 @@
 					</div>
 
 					<h4><small class="glyphicon glyphicon-user" ></small> Author</h4>
-					<div class="list-group">
-						<a href="#/posts?author={{author.text}}" class="list-group-item" ng-repeat="author in authors " ng-click="filterByLabel(author.text)">
+					<div class="list-group" ng-model="path" ng-change="change()">
+						<a href="#/posts?author={{cleanUrl(author.text)}}" class="list-group-item" ng-repeat="author in authors " ng-click="filterByAuthor(author.text)">
 							<span class="badge">{{author.num}}</span>
 							{{author.text}}
 						</a>

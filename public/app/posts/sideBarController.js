@@ -3,9 +3,10 @@
 
 	var app = angular.module('blogApp');
 
-	app.controller('sideBarCtrl', ['$rootScope', '$scope', '$http', 'postsService',
-		function ($rootScope, $scope, $http, postsService) {
+	app.controller('sideBarCtrl', ['$rootScope', '$scope', '$http', 'postsService', '$location',
+		function ($rootScope, $scope, $http, postsService, $location) {
 			//promissies tip#6
+
 
 
 		// initialize model
@@ -15,13 +16,22 @@
 		$scope.date = [];
 		$scope.postsQuantity = '';
 
+		// this is listener for a url change event - it will make the code execute when it fire the event
 		$rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
-		    console.log(curr.params);
+
+			console.log(curr.params);
 
 		    if (curr.params.category) {
 		    	postsService.labelText = curr.params.category;
 		    	postsService.typeOfSearch = 'filterByCategory';
 		    }
+			if (curr.params.author) {
+				postsService.labelText = curr.params.author;
+				postsService.typeOfSearch = 'filterByAuthor';
+			}
+
+
+
 		});
 
 		//ajax http call
@@ -100,9 +110,9 @@
 			postsService.typeOfSearch = 'filterAll';
 		};
 
-		$scope.filterByLabel = function (items) {
+		$scope.filterByAuthor = function (items) {
 			postsService.labelText = items;
-			postsService.typeOfSearch = 'filterByLabel';
+			postsService.typeOfSearch = 'filterByAuthor';
 			// this is new !! what is it? and how its helping us?
 			// $scope.$apply();
 		};
@@ -114,10 +124,18 @@
 
 		};
 
+
+		$scope.cleanUrl = function (str) {
+			 return str.replace(' ', '-').toLowerCase();
+
+		};
+
+
+
 		// Todo: make those to each type of search (3) ex: filterByCategory, filterByDate . .
 
 
-		function indexInAuthor(arr, str){
+			function indexInAuthor(arr, str){
 				var valueToReturn = -1;
 
 						arr.forEach(function (node, index ) {
@@ -130,7 +148,7 @@
 
 						}
 
-						function indexInCategory(arr, str) {
+			function indexInCategory(arr, str) {
 							var valueToReturn = -1;
 
 							arr.forEach(function (node, index ) {
@@ -143,7 +161,7 @@
 
 						}
 
-						function indexInDate(arr, str){
+			function indexInDate(arr, str){
 							var valueToReturn = -1;
 
 							arr.forEach(function (node, index ) {
@@ -155,6 +173,7 @@
 							return valueToReturn;
 
 						}
+
 
 	}]);
 
