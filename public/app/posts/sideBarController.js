@@ -3,11 +3,29 @@
 
 	var app = angular.module('blogApp');
 
-	app.controller('sideBarCtrl', ['$rootScope', '$scope', '$http', 'postsService', '$location',
-		function ($rootScope, $scope, $http, postsService, $location) {
+	app.controller('sideBarCtrl', ['$rootScope', '$scope', '$http', 'postsService', '$location', '$routeParams',
+		function ($rootScope, $scope, $http, postsService, $location, $routeParams) {
 			//promissies tip#6
+        //
+        $scope.isSelected = function (item, filter) {
 
+			var result = false;
 
+			if(filter === 'category'){
+				result = item.toLowerCase() === $routeParams.category;
+			}
+			if(filter === 'author') {
+				result = item.toLowerCase().replace(' ','-') === $routeParams.author;
+			}
+			if (filter === '/posts') {
+				result = true;
+				//else  (filter !=== '/posts'){
+				//	result = false;
+				//}
+			}
+
+			return result;
+        }
 
 		// initialize model
 		$scope.blogSearch = 'search ME';
@@ -79,8 +97,7 @@
 					// check if tags exist in categories
 					 // indexInCategory($scope.categories, item.tags);
 
-					item.tags.forEach(function (tag)
-					{
+					item.tags.forEach(function (tag) {
 						var placeOfTag = indexInCategory($scope.categories, tag);
 						//check if exsit +1 else add new tag
 						if( placeOfTag !== -1 )

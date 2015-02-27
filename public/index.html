@@ -84,7 +84,7 @@
 					<h3>Filter Posts</h3>
 
 					<div class="list-group">
-						<a href="#/posts" class="list-group-item active" ng-class="" ng-click="filterAll()">
+						<a href="#/posts" class="list-group-item " ng-class="{active:isSelected(null, '/posts')}" ng-click="filterAll()">
 							<span class="badge">{{postsQuantity}}</span>
 							Show All Posts
 						</a>
@@ -92,7 +92,7 @@
 
 					<h4><small class="glyphicon glyphicon-tag" ></small> Category</h4>
 					<div class="list-group" >
-						<a href="#/posts?category={{cleanUrl(category.text)}} "  class="list-group-item" ng-repeat="category in categories " ng-click="filterByCategory(category.text)">
+						<a href="#/posts?category={{cleanUrl(category.text)}} "  class="list-group-item"  ng-class="{active: isSelected(category.text,'category')}" ng-repeat="category in categories " ng-click="filterByCategory(category.text)">
 							<span class="badge">{{category.num}}</span>
 							{{category.text}}
 						</a>
@@ -101,7 +101,7 @@
 
 					<h4><small class="glyphicon glyphicon-user" ></small> Author</h4>
 					<div class="list-group" ng-model="path" ng-change="change()">
-						<a href="#/posts?author={{cleanUrl(author.text)}}" class="list-group-item" ng-repeat="author in authors " ng-click="filterByAuthor(author.text)">
+						<a href="#/posts?author={{cleanUrl(author.text)}}" class="list-group-item" ng-class="{active: isSelected(author.text,'author')}"  ng-repeat="author in authors " ng-click="filterByAuthor(author.text)">
 							<span class="badge">{{author.num}}</span>
 							{{author.text}}
 						</a>
