@@ -3,7 +3,7 @@
 	'use strict';
 	var app = angular.module('blogApp');
 
-	app.controller('PostsCtrl', function($scope, postsService, $routeParams, $location) {
+	app.controller('PostsCtrl', function($scope, postsService, $rootScope, $routeParams, $location) {
 
 		// initialize model
 		$scope.posts = [];
@@ -12,11 +12,21 @@
 
 		$scope.labelTxt = '';
 
+
+		$rootScope.$on('changePostsQuantity', function() {
+			$scope.postsQuantity = postsService.quantity;
+		});
+
+		$scope.cleanUrl = function (str) {
+			return str.replace(' ', '-').toLowerCase();
+		};
+
 		// $scope.pageNum = $routeParams.page;
 		// console.log($scope.pageNum);
 
 		// Get posts data
 		$scope.posts = postsService.get().then(function (data){
+			debugger;
 			$scope.posts = data.data.posts;
 
 		});
@@ -96,6 +106,7 @@
 // postsData
 // 	.success(function(data, status) {
 // 				$scope.postsData = data.posts;
+				// &scope.test = data.posts[1].source;
 // 			})
 // 			.error(function (err, status){
 // 				console.error(status, err);

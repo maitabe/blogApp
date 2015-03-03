@@ -3,7 +3,7 @@
 	// You app starts here
 	'use strict';
 	//ngRout help me to control the url
-	var app = angular.module('blogApp', ['ngRoute']);
+	var app = angular.module('blogApp', ['ngRoute','ngSanitize']);
 
 	app.config(function($routeProvider) {
 		$routeProvider

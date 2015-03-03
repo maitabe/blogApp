@@ -5,7 +5,14 @@
 	//get data from json
 	app.factory('postsService', function ($http, $q){
 
-		var promise = $http.get('/posts') //('/posts')
+		var defer = $q.defer();
+		var postsPromise = defer.promise;
+
+		var promise = $http.get('/posts')
+			.success(function (data, status){
+				//dataCache.posts = data.posts;
+				defer.resolve(data);
+			})
 			.error(function (data, status) {
 				console.error(status, data);
 			});
@@ -26,8 +33,25 @@
 			get: function () {
 				return promise;
 			},
-			labelText: '',
-			typeOfSearch: ''
+			getByTitle: function (title) {
+				debugger;
+				var defer = $q.defer();
+				postsPromise.then(function(data){
+					debugger;
+					// loop and find in data the right post by title
+
+
+
+
+					//defer.resolve(post);
+				});
+
+
+				return defer.promise;
+			},
+			labelText: 'allPosts',
+			typeOfSearch: 'filterAll',
+			quantity: 0
 		};
 
 		//return $http.get('data/posts.json');

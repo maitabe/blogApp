@@ -23,7 +23,7 @@
 	});
 
 // make filters file.js
-	app.filter('searchBar', ['postsService',function (postsService){
+	app.filter('searchBar', ['postsService', '$rootScope', function (postsService, $rootScope){
 		return function (items) {
 			// your code
 			var filteredArr = [];
@@ -32,6 +32,7 @@
 			if(postsService.labelText !== undefined && postsService.labelText !== '') {
 				for (var i = 0; i < items.length; i++) {
 
+					// logic of filter by Author
 					if(postsService.typeOfSearch === 'filterByAuthor') {
 						if(items[i].author.toLowerCase() === postsService.labelText.replace('-', ' ')) {
 							filteredArr.push(items[i]);
@@ -54,13 +55,26 @@
 						filteredArr.push(items[i]);
 					}
 
+					//else if(postsService.labelText === 'filterBySearch') {
+					//	var isExist = false;
+                    //
+					//	if
+                    //
+                    //
+                    //
+					//	if(isExist == true) {
+					//		filteredArr.push(items[i]);
+					//	}
+					//}
 
 				}
 			}
-			else {
-				filteredArr = items;
-			}
+
+
+
+
 			postsService.quantity = filteredArr.length;
+			$rootScope.$broadcast('changePostsQuantity');
 			console.log("searchBar filter posts=%o", filteredArr);
 			return filteredArr;
 

@@ -1,16 +1,18 @@
 <!-- Blog Entries Column -->
 <section class="col-md-8" >
-	<h1 class="page-header">Showing {{posts.length}} posts</h1>
+	<h1 class="page-header">Showing {{postsQuantity}} posts</h1>
 
 
 	<div ng-bind-html="postHtml"></div>
-	<!-- Begin Post -->
 
+	<!-- Begin Post -->
+	<!-- with angular expressions the title, author, date, dec -->
 	<article ng-repeat="post in posts | searchBar">
 		<!--| orderBy:'-date'-->
 		<header>
 			<h2>
-				<a href="post.html">{{post.title}}</a>
+				<a href="#/post/{{post.title}}">{{post.title}}</a>
+
 			</h2>
 
 			<p>
@@ -31,10 +33,10 @@
 		<footer class="clearfix">
 			<p class="pull-left">
 				<b>Tags:&nbsp;</b>
-				<a href="#" class="label label-default" ng-repeat="tag in post.tags">{{tag}}</a>
+				<a href="#/posts?category={{cleanUrl(tag)}} " class="label label-default" ng-repeat="tag in post.tags">{{tag}}</a>
 			</p>
 
-			<a class="btn btn-primary pull-right" href="{{post.source}}">
+			<a class="btn btn-primary pull-right" href="#/post/{{post.title}}">
 				Read More <i class="glyphicon glyphicon-chevron-right"></i>
 			</a>
 		</footer>
@@ -47,10 +49,10 @@
 	<ul class="pager">
 		<li class="previous">
 
-			<button ng-click="oldestPost()">&larr; Older</button>
+			<a href="" ng-click="oldestPost()">&larr; Older</a>
 		</li>
 		<li class="next">
-			<button ng-click="newestPost()">Newer &rarr;</button>
+			<a href="" ng-click="newestPost()">Newer &rarr;</a>
 		</li>
 	</ul>
 </section>
