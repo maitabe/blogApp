@@ -58,12 +58,14 @@
 					//else if(postsService.labelText === 'filterBySearch') {
 					//	var isExist = false;
                     //
-					//	if
+					//	// check author
+					//	if() {
                     //
+					//	// check in title
                     //
-                    //
-					//	if(isExist == true) {
+					//	if(isExist === true) {
 					//		filteredArr.push(items[i]);
+					//		}
 					//	}
 					//}
 

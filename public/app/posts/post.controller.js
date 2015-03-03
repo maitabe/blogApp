@@ -9,13 +9,14 @@
 		$scope.postTitle = $routeParams.title;
 
 
-		postsService.getByTitle($scope.postTitle).then(function(data) {
-			$scope.post = data;
+		postsService.getByTitle($scope.postTitle).then(function(post) {
+			debugger;
+			$scope.post = post;
 
 
-			console.log(data);
+			//console.log(data);
 
-			$http.get(postsService.htmlPath)
+			$http.get('http://localhost:63342/blogApp/' + post.htmlPath)
 				.success(function (data) {
 					debugger;
 					$scope.postHtml = $sanitize(data);
@@ -28,8 +29,4 @@
 
 }());
 
-
-//$scope.posts = postsService.get().then(function (data){
-//	$scope.posts = data.data.posts;
-//
-//});
+//$http.get('http://localhost:63342/blogApp/' + post.htmlPath)

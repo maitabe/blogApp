@@ -1,7 +1,7 @@
 <!-- Blog Post Content Column -->
 <section class="col-md-8">
 
-	<div ng-bind-html="postHtml"></div>
+
 	<!-- Begin Post -->
 	<article>
 		<header>
@@ -30,7 +30,8 @@
 		<!-- Post Content -->
 
 		<!-- ng-include -->
-		<ng-include src="post.html"> </ng-include>
+		<!--<ng-include src="'post.htmlPath'"> </ng-include>-->
+		<div ng-bind-html="postHtml"></div>
 
 
 		<!-- End of Post Content -->

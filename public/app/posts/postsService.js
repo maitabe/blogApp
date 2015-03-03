@@ -39,11 +39,13 @@
 				postsPromise.then(function(data){
 					debugger;
 					// loop and find in data the right post by title
+					data.posts.forEach(function (post){
+						if (post.title === title){
+							defer.resolve(post);
+							return;
+						}
+					});
 
-
-
-
-					//defer.resolve(post);
 				});
 
 
@@ -61,3 +63,5 @@
 
 
 }());
+
+
