@@ -16,7 +16,7 @@
 
 			//console.log(data);
 
-			$http.get('http://localhost:63342/blogApp/' + post.htmlPath)
+			$http.get(post.htmlPath)
 				.success(function (data) {
 					debugger;
 					$scope.postHtml = $sanitize(data);
