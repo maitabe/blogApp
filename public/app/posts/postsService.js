@@ -8,7 +8,10 @@
 		var defer = $q.defer();
 		var postsPromise = defer.promise;
 
-		var promise = $http.get('/posts')
+		//var promise = $http.get('/posts')
+		//var promise = $http.get('data/posts.json')
+		//var promise = $http.get('data/postsOriginal.json')
+		var promise = $http.get('data/posts.json')
 			.success(function (data, status){
 				//dataCache.posts = data.posts;
 				defer.resolve(data);
@@ -65,3 +68,39 @@
 }());
 
 
+function postsService () {
+
+	var posts = [];
+
+	getPosts();
+
+	return {
+		getAllPosts: getAllPosts,
+		getPostsByAuthor: getPostsByAuthor,
+		getPostsByTag: getPostsByTag
+	};
+
+	function getAllPosts () {
+		return posts;
+	}
+
+	function getPostsByAuthor (author) {
+		// Filter posts[] by author
+		var filtered = [];
+		return filtered;
+	}
+
+	function getPostsByTag (tag) {
+		// Filter posts[] by tag
+		var filtered = [];
+		return filtered;
+	}
+
+	function getPosts () {
+		$http.get("/posts").then(havePosts);
+	}
+
+	function havePosts (data) {
+		posts = data;
+	}
+}
