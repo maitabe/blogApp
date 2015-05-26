@@ -11,7 +11,7 @@
 		//var promise = $http.get('/posts')
 		//var promise = $http.get('data/posts.json')
 		//var promise = $http.get('data/postsOriginal.json')
-		var promise = $http.get('data/posts.json')
+		var promise = $http.get('../data/posts.json')
 			.success(function (data, status){
 				//dataCache.posts = data.posts;
 				defer.resolve(data);
